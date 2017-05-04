@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<!--<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{openId}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  
+</view>-->
+<view>
+    <!--<button type="default" bindtap="showLocation">+</button>-->
+    <map longitude="{{location.longitude}}" latitude="{{location.latitude}}" markers="{{markers}}" controls="{{controls}}" bindcontroltap="controltap"></map>
+</view>

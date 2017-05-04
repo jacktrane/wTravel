@@ -1,0 +1,60 @@
+
+<!--pages/index/trace.wxml-->
+<!--<import src="../template/imgtpl" />
+<button bindtap="chooseImg">上传图片</button>
+<block wx:for="{{tempFilePaths}}">
+  <view>
+    <template is="imgItem" data="{{item}}" />
+    <button bindtap="getImageInfo" id="{{item}}">获取图片信息</button>
+    <text>{{info}}</text>
+  </view>
+</block>-->
+
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <block wx:if="{{recording === false && playing === false && hasRecord === false}}">
+        <view class="page-body-time">
+          <text class="time-big">{{formatedRecordTime}}</text>
+        </view>
+        <view class="page-body-buttons">
+          <view class="page-body-button"></view>
+          <view class="page-body-button" bindtap="startRecord">
+            <!--<image src="../images/icon.png"></image>-->
+            录音
+          </view>
+          <view class="page-body-button"></view>
+        </view>
+      </block>
+      <block wx:if="{{recording === true}}">
+        <view class="page-body-time">
+          <text class="time-big">{{formatedRecordTime}}</text>
+        </view>
+        <view class="page-body-buttons">
+          <view class="page-body-button"></view>
+          <view class="page-body-button" bindtap="stopRecord">
+            <view class="button-stop-record"></view>
+          </view>
+          <view class="page-body-button"></view>
+        </view>
+      </block>
+      <block wx:if="{{hasRecord === true && playing === false}}">
+        <view class="page-body-time">
+          <text class="time-big">{{formatedPlayTime}}</text>
+          <text class="time-small">{{formatedRecordTime}}</text>
+        </view>
+        <view class="page-body-buttons">
+          <view class="page-body-button"></view>
+          <view class="page-body-button" bindtap="playVoice">
+            <!--<image src="../images/1186641.png"></image>-->
+            播放
+          </view>
+          <view class="page-body-button" bindtap="clear">
+            <!--<image src="../images/14480.png"></image>-->
+            取消
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

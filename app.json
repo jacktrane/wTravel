@@ -1,0 +1,37 @@
+{
+  "pages":[
+    
+    "pages/index/index",
+    "pages/index/trace",
+    "pages/index/slid",
+    
+    "pages/publish/tabBar",
+    "pages/publish/voice",
+    "pages/publish/character",
+    "pages/publish/picture",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "顽途",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "list":[{
+      "pagePath": "pages/index/index",
+      "text": "足迹"
+    },{
+      "pagePath": "pages/index/trace",
+      "text": "痕迹"
+    },{
+      "pagePath": "pages/index/slid",
+      "text": "位置"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

@@ -1,0 +1,5 @@
+<template name="imgItem">
+    <view class="image-show">
+        <image src="{{item}}"></image>
+    </view>
+</template>

@@ -1,0 +1,82 @@
+/* pages/publish/tabBar.wxss */
+.page {
+    min-height: 100%;
+    flex: 1;
+    background-color: #FBF9FE;
+    font-size: 32rpx;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    overflow: hidden;
+    padding-top:40px;
+}
+
+/*模块*/
+.section{
+    margin-bottom: 80rpx;
+}
+
+.btn-area{
+    padding: 0 30px;
+}
+.btn-area button{
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+.page input{
+    padding: 20rpx 30rpx;
+    background-color: #fff;
+    margin-left: 20rpx;
+}
+/*图文*/
+.picture .image-show{
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+} 
+.picture image{
+    width: 100%;
+}
+.picture textarea{
+    width: 100%;
+    height: 400rpx;
+    padding-bottom: 20px;
+    background-color: white;
+}
+/*录音*/
+.voice image {
+  width: 150rpx;
+  height: 150rpx;
+}
+.page-body-wrapper {
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-bottom: 300rpx;
+}
+.page-body-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.time-big {
+  font-size: 60rpx;
+  margin: 20rpx;
+}
+.time-small {
+  font-size: 30rpx;
+}
+.page-body-buttons {
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.page-body-button {
+  width: 250rpx;
+  text-align: center;
+}
+.button-stop-record {
+  width: 110rpx;
+  height: 110rpx;
+  border: 20rpx solid #fff;
+  background-color: #f55c23;
+  border-radius: 130rpx;
+  margin: 0 auto;
+}

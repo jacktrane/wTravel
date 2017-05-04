@@ -1,0 +1,12 @@
+{"tabBar":{
+    "list":[{
+      "pagePath": "pages/index/index",
+      "text": "足迹"
+    },{
+      "pagePath": "pages/index/trace",
+      "text": "痕迹"
+    },{
+      "pagePath": "pages/index/slid",
+      "text": "位置"
+    }]
+  }}
