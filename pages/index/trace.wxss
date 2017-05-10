@@ -1,40 +1,147 @@
 /* pages/index/trace.wxss */
 
+/*view {
+  overflow: auto;
+}*/
+
+.publish{
+  padding: 20px;
+}
+
 image {
-  width: 150rpx;
-  height: 150rpx;
+  width: 120px;
+  height: 50px;
+  margin-right: 20px;
 }
-.page-body-wrapper {
-  justify-content: space-between;
-  flex-grow: 1;
-  margin-bottom: 300rpx;
-}
-.page-body-time {
+
+.flex-wrp {
+  height: 100px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: #fff;
 }
-.time-big {
-  font-size: 60rpx;
-  margin: 20rpx;
+
+.content {
+  word-break: break-all; /*支持IE，chrome，FF不支持*/
+  word-wrap: break-word; /*支持IE，chrome，FF*/
 }
-.time-small {
-  font-size: 30rpx;
+
+.comment-section{
+ 
+  text-align:right;
 }
-.page-body-buttons {
-  margin-top: 60rpx;
-  display: flex;
-  justify-content: space-around;
+.comment-section span:first-child{
+   margin-right:30rpx;
 }
-.page-body-button {
-  width: 250rpx;
-  text-align: center;
+.comment-content{
+  background-color:#FBF9FE;
+  margin-top: 25rpx;
+  padding:10rpx;
+
 }
-.button-stop-record {
-  width: 110rpx;
-  height: 110rpx;
-  border: 20rpx solid #fff;
-  background-color: #f55c23;
-  border-radius: 130rpx;
-  margin: 0 auto;
+.comment-one{
+  border-bottom: 1px solid #FBF0FE;
+  word-break: break-all; /*支持IE，chrome，FF不支持*/
+  word-wrap: break-word; /*支持IE，chrome，FF*/
 }
+/*.red{
+    background: red;
+}
+.green{
+    background: green;
+}
+.blue{
+    background: blue;
+}*/
+
+/*mask*/ 
+.drawer_screen { 
+ width: 100%; 
+ height: 100%; 
+ position: fixed; 
+ top: 0; 
+ left: 0; 
+ z-index: 1000; 
+ background: #000; 
+ opacity: 0.5; 
+ overflow: hidden; 
+} 
+ 
+/*content*/ 
+.drawer_box { 
+ width: 650rpx; 
+ overflow: hidden; 
+ position: fixed; 
+ top: 50%; 
+ left: 0; 
+ z-index: 1001; 
+ background: #FAFAFA; 
+ margin: -150px 50rpx 0 50rpx; 
+ border-radius: 3px; 
+} 
+ 
+.drawer_title{ 
+ padding:15px; 
+ font: 20px "microsoft yahei"; 
+ text-align: center; 
+} 
+.drawer_content { 
+ /*height: 210px; */
+ overflow-y: scroll; /*超出父盒子高度可滚动*/ 
+} 
+ 
+.btn_ok{ 
+ padding: 10px; 
+ font: 20px "microsoft yahei"; 
+ text-align: center; 
+ border-top: 1px solid #E8E8EA; 
+ color: #3CC51F; 
+} 
+ 
+.top{ 
+ padding-top:8px; 
+} 
+.bottom { 
+ padding-bottom:8px; 
+} 
+.title { 
+ height: 30px; 
+ line-height: 30px; 
+ /*width: 160rpx; */
+ width: 40rpx; 
+ text-align: center; 
+ display: inline-block; 
+ font: 300 28rpx/30px "microsoft yahei"; 
+} 
+ 
+.input_base { 
+ border: 2rpx solid #ccc; 
+ padding-left: 10rpx; 
+ margin-right: 50rpx; 
+} 
+.input_h30{ 
+ height: 30px; 
+ line-height: 30px; 
+} 
+.input_h60{ 
+ height: 60px; 
+} 
+.input_view{ 
+ font: 12px "microsoft yahei"; 
+ background: #fff; 
+ color:#000; 
+ line-height: 30px; 
+} 
+ 
+input { 
+ font: 12px "microsoft yahei"; 
+ background: #fff; 
+ color:#000 ; 
+} 
+radio{ 
+ margin-right: 20px; 
+} 
+.grid { display: -webkit-box; display: box; } 
+.col-0 {-webkit-box-flex:0;box-flex:0;} 
+.col-1 {-webkit-box-flex:1;box-flex:1;} 
+.fl { float: left;} 
+.fr { float: right;} 

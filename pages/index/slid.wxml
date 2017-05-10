@@ -1,2 +1,13 @@
-<!--pages/index/slid.wxml-->
-<text>pages/index/slid.wxml</text>
+<!--index.wxml-->
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="usermotto">
+    <view class="foot">相册</view>
+    <view class="foot">周边攻略</view>
+    <view class="foot" bindtap="nav">指南针</view>
+    <!--<view class="foot"></view>-->
+  </view>
+</view>

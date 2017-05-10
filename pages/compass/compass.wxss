@@ -1,0 +1,27 @@
+.container {
+  height: 100%;
+}
+.text {
+  text-align: center;
+  color: black;
+  font-size: 56rpx;
+  /*padding-top: 50rpx*/
+}
+.text text {
+  display: block;
+  color: black;
+}
+
+
+.pic {
+  height: 650rpx;
+  width: 650rpx;
+  position: absolute;
+  top: 50%;
+  left: 50rpx;
+  margin-top: -300rpx;
+}
+.pic image {
+  width: 100%;
+  height: 100%
+}

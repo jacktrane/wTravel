@@ -1,1 +1,33 @@
 /* pages/index/slid.wxss */
+.container{
+  margin-top:200rpx;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 50px;
+  color: #000000;
+}
+.usermotto view{
+  text-align: center;
+  padding:30rpx;
+  border-bottom:1px solid #FBF0FE;
+}
+.usermotto view:first-child{
+  border-top:1px solid #FBF0FE;
+}

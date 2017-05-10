@@ -1,8 +1,27 @@
 // pages/index/slid.js
+var app = getApp()
+
 Page({
-  data:{},
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  data:{
+    userInfo: {
+      nickName: '吴泽强',
+    },
+  },
+  onLoad: function () {
+    console.log('onLoad');
+    var that = this;
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      // console.log(userInfo);
+      //更新数据
+      that.setData({
+        userInfo: userInfo
+      })
+    });
+
+    
+
+   
   },
   onReady:function(){
     // 页面渲染完成
@@ -15,5 +34,11 @@ Page({
   },
   onUnload:function(){
     // 页面关闭
+  },
+  nav:function(){
+    wx.navigateTo({
+      url: '../compass/compass'
+    })
   }
 })
+

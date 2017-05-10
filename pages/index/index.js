@@ -109,7 +109,7 @@ Page({
           scale: 6,
           controls:[{
             id: 1,
-            iconPath: '../images/icon.png',
+            iconPath: '../../images/icon.png',
             position:{
               left: 270,
               top: 500-50,

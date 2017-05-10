@@ -9,6 +9,7 @@
     "pages/publish/voice",
     "pages/publish/character",
     "pages/publish/picture",
+    "pages/compass/compass",
     "pages/logs/logs"
   ],
   "window":{
