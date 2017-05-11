@@ -10,7 +10,9 @@
     "pages/publish/character",
     "pages/publish/picture",
     "pages/compass/compass",
+    "pages/slid/strategy",
     "pages/logs/logs"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

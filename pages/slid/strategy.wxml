@@ -1,0 +1,7 @@
+<!--strategy.wxml-->
+
+<view wx:for="{{items}}"  wx:key="id">
+  <image src="{{item.image}}"></image>
+    <view class="">{{item.title}}</view>
+    <view class="">{{item.content}}</view>
+</view>
