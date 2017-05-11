@@ -1,1 +1,2 @@
 /* straContent.wxss */
+@import "../../wxParse/wxParse.wxss";

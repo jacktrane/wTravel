@@ -1,8 +1,11 @@
 <!--straContent.wxml-->
-<text>straContent.wxml</text>
+<!--<text>straContent.wxml</text>-->
 <!--<view wx:for="{{items}}"  wx:key="id" class="section" bindtap="nav">
     {{item.title}}
     {{item.content}}
 </view>-->
-
-<template is="wxParse" data="{{wxParseData:title.nodes}}"/>
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="wxParse">
+  <template is="wxParse" data="{{wxParseData:title.nodes}}"/>
+  <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+</view>

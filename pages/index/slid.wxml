@@ -9,7 +9,6 @@
     <view class="foot" bindtap="travel">周边攻略</view>
     <view class="foot" bindtap="nav">指南针</view>
     <!--<view class="foot"></view>-->
-    <b>dddddd</b>
-    <img src="{{userInfo.avatarUrl}}">ddddd</img>
+    
   </view>
 </view>

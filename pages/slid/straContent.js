@@ -4,7 +4,7 @@ Page({
   data:{},
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
-    console.log(options);
+    console.log(options.url);
     var that = this;
     wx.request({
       url: 'https://jacktrane.cn/wx/travelApi.php?q=content&url=' + options.url,
@@ -13,17 +13,15 @@ Page({
         "Content-Type": "application/json"
       },
       success: function (res) {
-        console.log(res.data.title);
-        var that = this;
-        var title = res.data.title;
-        var content = res.data.content;
-        
+        console.log(res.data);
+        WxParse.wxParse('title', 'html', res.data.title, that, 5);              
+        WxParse.wxParse('content', 'html', res.data.content, that, 5);            
         // that.setData({
-        //   title :title,
-        //   content: content
+        //   title: res.data.title,
+        //   content: res.data.content
         // })
       }
-    })
+    });
   },
   onReady:function(){
     // 页面渲染完成
