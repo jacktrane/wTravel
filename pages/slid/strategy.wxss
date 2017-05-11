@@ -1,1 +1,33 @@
 /* strategy.wxss */
+
+.section {
+  /*position: relative;*/
+  width: 600rpx;
+  padding: 20rpx;
+  background-color: #fbf9fe;
+  margin: auto auto;
+  margin-bottom: 20rpx;
+  border-bottom: 1px solid #fbf0fe;
+}
+
+.section image {
+  width: 100%;
+  
+}
+
+.section .title {
+  /*position: absolute;*/
+  /*top: 413rpx;*/
+  /*background: rgba(0, 0, 0, 0.5);*/
+  /*color: white;*/
+  /*width: 280px;*/
+  text-align: center;
+  font-size: 40rpx;
+  display: block;
+  /*height: 60rpx;*/
+  /*padding: 20rpx;*/
+}
+
+.section .content{
+  font-size: 30rpx;
+}
