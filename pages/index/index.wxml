@@ -11,5 +11,5 @@
 </view>-->
 <view>
     <!--<button type="default" bindtap="showLocation">+</button>-->
-    <map longitude="{{location.longitude}}" latitude="{{location.latitude}}" markers="{{markers}}" controls="{{controls}}" bindcontroltap="controltap"></map>
+    <map id="map" longitude="{{location.longitude}}" latitude="{{location.latitude}}" markers="{{markers}}" controls="{{controls}}" bindcontroltap="controltap" show-location></map>
 </view>

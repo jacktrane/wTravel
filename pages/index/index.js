@@ -1,118 +1,86 @@
 //index.js
 //获取应用实例
-var app = getApp()
+var app = getApp();
+var map;
 Page({
   data: {
     motto: '玩命加载中...',
     userInfo: {
       nickName: '吴泽强',
     },
-    openId:{}
+    openId: {}
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
   onLoad: function () {
-    console.log('onLoad');
     var that = this;
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      // console.log(userInfo);
+    if (!map) {
+      map = wx.createMapContext('map');
+    }
+    //获取用户userinfo
+    app.getUserInfo(function (userInfo) {
+      console.log(userInfo);
       //更新数据
       that.setData({
-          userInfo:userInfo
-        })
+        userInfo: userInfo
+      })
     });
 
     // 获取用户openid，存入data数据
-    wx.login({
-      success: function(res) {
-        if (res.code) {
-         console.log(res.code);
-         wx.request({
-           url: 'https://api.weixin.qq.com/sns/jscode2session',
-           data: {
-             appid:'wx567353ce8052ed6b',
-             secret:'45f8f69ccd95729cb542aae353245a20',
-             js_code:res.code,
-             grant_type:'authorization_code'
-           },
-           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-            header: {
-              'Content-Type': 'application/json'
-            },
-           success: function(res){
-             that.setData({
-                openId:res.data.openid
-              })
-           },
-         })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
-    wx.checkSession({
-      success: function(){
-        //登录态未过期
-      },
-      fail: function(){
-        //登录态过期
-        wx.login()
-      }
+    app.getUserOpenid(function (openid) {
+      console.log(openid);
+      //更新数据
+      that.setData({
+        openid: openid
+      })
     });
 
-    // 获取用户信息，存入data数据
-    wx.getUserInfo({
-      success: function(res) {
-        // var userInfo = res.userInfo
-        // var nickName = userInfo.nickName
-        // var avatarUrl = userInfo.avatarUrl
-        // var gender = userInfo.gender //性别 0：未知、1：男、2：女
-        // var province = userInfo.province
-        // var city = userInfo.city
-        // var country = userInfo.country
-        console.log(res.userInfo);
-        that.setData({
-          userInfo:res.userInfo
-        })
-      }
-    });
-
-    
     wx.getLocation({
-      type: 'gcj02',
-      
-      success: function(res){
+      type: 'wgs84',
+
+      success: function (res) {
         var longitude = res.longitude, latitude = res.latitude;
         console.log(latitude);
+        var info = wx.getSystemInfoSync();
         var lo = 100.9, la = 39.9;
         that.setData({
           location: {
             latitude: latitude,
             longitude: longitude,
           },
-          markers:[{
+          markers: [{
             latitude: latitude,
             longitude: longitude,
             name: '微信小程序社区',
+            address: '北京市海淀区北四环西路66号',
             desc: '我在这里'
-          },{
+          }, {
             latitude: la,
             longitude: lo,
             name: '<p style="color:black">微信小程序社区</p>',
             desc: '我在这里'
           }],
           scale: 6,
-          controls:[{
+          controls: [{
             id: 1,
             iconPath: '../../images/icon.png',
-            position:{
-              left: 270,
-              top: 500-50,
+            position: {
+              left: info.windowWidth - 70,
+              top: info.windowHeight - 70,
+              width: 50,
+              height: 50
+            },
+            clickable: true
+          }, {
+            id: 2,
+            iconPath: '../../images/icon.png',
+            position: {
+              left: info.windowWidth - 70,
+              top: info.windowHeight - 120,
               width: 50,
               height: 50
             },
@@ -122,8 +90,10 @@ Page({
         });
       }
     })
+    
   },
-  showLocation: function(e) {
+
+  showLocation: function (e) {
     var that = this;
     var location = that.data.location;
     wx.openLocation({
@@ -135,27 +105,28 @@ Page({
     });
   },
   // 地图的控件问题
-  // controltap: function(e) {
-  //   var that = this;
-  //   wx.navigateTo({
-  //     url: '../publish/tabBar?longitude=' + that.data.location.longitude + '&latitude=' + that.data.location.latitude
-  //   })
-  // },
-
-  controltap: function () {
+  controltap: function (e) {
     var that = this;
-    var itemList= ['文字', '语音', '图文']
-    wx.showActionSheet({
-      itemList:itemList,
-      success: function (res) {
-        if (!res.cancel) {
-          // console.log(itemList[res.tapIndex])
-          wx.navigateTo({
-          url: '../publish/tabBar?name=' + itemList[res.tapIndex] + '&longitude=' + that.data.location.longitude + '&latitude=' + that.data.location.latitude
-          })
-        }
-      }
-    })
+    var itemList = ['文字', '语音', '图文']
+    switch (e.controlId) {
+      case 1: {
+        wx.showActionSheet({
+          itemList: itemList,
+          success: function (res) {
+            if (!res.cancel) {
+              // console.log(itemList[res.tapIndex])
+              wx.navigateTo({
+                url: '../publish/tabBar?name=' + itemList[res.tapIndex] + '&longitude=' + that.data.location.longitude + '&latitude=' + that.data.location.latitude
+              })
+            }
+          }
+        })
+      };
+      case 2: {
+        map.moveToLocation();
+      };
+    }
+
   }
 
 })
