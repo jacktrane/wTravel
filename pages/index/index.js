@@ -4,9 +4,7 @@ var app = getApp();
 var map;
 Page({
   data: {
-    motto: '玩命加载中...',
     userInfo: {
-      nickName: '吴泽强',
     },
     openId: {}
   },
@@ -21,30 +19,58 @@ Page({
     if (!map) {
       map = wx.createMapContext('map');
     }
-    //获取用户userinfo
-    app.getUserInfo(function (userInfo) {
-      console.log(userInfo);
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-    });
+
 
     // 获取用户openid，存入data数据
     app.getUserOpenid(function (openid) {
-      console.log(openid);
       //更新数据
       that.setData({
         openid: openid
-      })
+      });
+      //获取用户userinfo
+      app.getUserInfo(function (userInfo) {
+        //更新数据
+        that.setData({
+          userInfo: userInfo,
+          nickName: userInfo.nickName,
+          gender: userInfo.gender,
+          avatarUrl: userInfo.avatarUrl,
+          province: userInfo.province,
+          city: userInfo.city
+        });
+        wx.request({
+          url: app.globalData.servers+'userApi.php',
+          data: {
+            nickName: that.data.nickName,
+            gender: that.data.gender,
+            avatarUrl: that.data.avatarUrl,
+            province: that.data.province,
+            city: that.data.city,
+            openid: that.data.openid
+          },
+          method: 'POST',
+          header: {
+            // 'Content-Type': 'application/json'
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          success: function (res) {
+            app.globalData.id = res.data.user_id;
+            // console.log(res.data)
+            // 地图的marker在这边
+            that.setData({
+              markers: res.data.list
+            })
+          }
+        })
+      });
+      
     });
-
     wx.getLocation({
       type: 'wgs84',
 
       success: function (res) {
         var longitude = res.longitude, latitude = res.latitude;
-        console.log(latitude);
+        that.locateAnal(res.latitude, res.longitude);
         var info = wx.getSystemInfoSync();
         var lo = 100.9, la = 39.9;
         that.setData({
@@ -52,19 +78,7 @@ Page({
             latitude: latitude,
             longitude: longitude,
           },
-          markers: [{
-            latitude: latitude,
-            longitude: longitude,
-            name: '微信小程序社区',
-            address: '北京市海淀区北四环西路66号',
-            desc: '我在这里'
-          }, {
-            latitude: la,
-            longitude: lo,
-            name: '<p style="color:black">微信小程序社区</p>',
-            desc: '我在这里'
-          }],
-          scale: 6,
+          scale: 12,
           controls: [{
             id: 1,
             iconPath: '../../images/icon.png',
@@ -90,7 +104,10 @@ Page({
         });
       }
     })
+
+    // console.log(app.globalData);
     
+
   },
 
   showLocation: function (e) {
@@ -127,6 +144,22 @@ Page({
       };
     }
 
+  },
+  locateAnal: function (lat, lng) {
+    var that = this;
+    wx.request({
+      url: 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + lat + ',' + lng + '&key=CLDBZ-MMDKG-7GGQ2-IRHQQ-YP7X3-3OB6X&get_poi=1',
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        var city = res.data.result.address_component.city;
+        var resCity = city.slice(0, -1);
+
+        app.globalData.oriCity = resCity;
+      }
+    })
   }
 
 })

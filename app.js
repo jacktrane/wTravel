@@ -12,34 +12,36 @@ App({
 
 
   },
-  getUserInfo: function () {
+  getUserInfo: function (cb) {
     var that = this
     if (this.globalData.userInfo) {
-      // typeof cb == "function" && cb(this.globalData.userInfo)
+      typeof cb == "function" && cb(this.globalData.userInfo)
     } else {
       //调用登录接口
       wx.login({
         success: function () {
           wx.getUserInfo({
             success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              // typeof cb == "function" && cb(that.globalData.userInfo)
+              that.globalData.userInfo = res.userInfo;
+              // console.log(that.globalData.userInfo);
+              typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })
         }
-      })
+      });
+      
     }
   },
-  getUserOpenid: function () {
+  getUserOpenid: function (cb) {
     var that = this
     if (this.globalData.openid) {
-      // typeof cb == "function" && cb(this.globalData.openid)
+      typeof cb == "function" && cb(this.globalData.openid)
     } else {
       //调用登录接口
       wx.login({
         success: function (res) {
           if (res.code) {
-            console.log(res.code);
+            // console.log(res.code);
             wx.request({
               url: 'https://api.weixin.qq.com/sns/jscode2session',
               data: {
@@ -54,7 +56,7 @@ App({
               },
               success: function (res) {
                 that.globalData.openid = res.data.openid;
-                // typeof cb == "function" && cb(that.globalData.openid)
+                typeof cb == "function" && cb(that.globalData.openid)
               },
             })
           } else {
@@ -64,20 +66,23 @@ App({
       });
     }
   },
-  getUserid: function (cb) {
-    var that = this
-    if (this.globalData.id) {
-      typeof cb == "function" && cb(this.globalData.id)
-    } else {
-      //调用登录接口
-      this.getUserInfo(function (userInfo) {
-        console.log(userInfo);
-        //更新数据
+  locateAnal: function (lat, lng) {
+    var that = this;
+    wx.request({
+      url: 'http://apis.map.qq.com/ws/geocoder/v1/?location=' + lat + ',' + lng + '&key=CLDBZ-MMDKG-7GGQ2-IRHQQ-YP7X3-3OB6X&get_poi=1',
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        var city = res.data.result.address_component.city;
+        var resCity = city.slice(0, -1);
+
         that.setData({
-          userInfo: userInfo
+          city: resCity
         })
-      });
-    }
+      }
+    })
   },
   onError: function (msg) {
     console.log(msg)
@@ -85,6 +90,8 @@ App({
   globalData: {
     userInfo: null,
     openid: null,
-    id:null
+    id:null,
+    oriCity:null,
+    servers:'https://jacktrane.cn/wx/'
   }
 })

@@ -1,12 +1,14 @@
-
 <!--pages/publish/tabBar.wxml-->
 <view class="page">
   <form class="page__bd" catchsubmit="formSubmit" catchreset="formReset">
     <view class="section charater" wx:if="{{name === '文字'}}">
+      <input name="menu" value="1" style="display:none"/>
       <input name="content" placeholder="想要说点什么？" />
+
     </view>
     <view class="section voice" wx:elif="{{name === '语音'}}">
       <!--<input name="content" placeholder="想要说点什么？" />-->
+      <input name="menu" value="2" style="display:none"/>
       <view class="container">
         <view class="page-body">
           <view class="page-section">
@@ -54,10 +56,12 @@
           </view>
         </view>
       </view>
+
     </view>
     <view class="section picture" wx:elif="{{name === '图文'}}">
+      <input name="menu" value="3" style="display:none"/>
       <import src="../template/imgtpl" />
-      <textarea name="content" placeholder="想要说点什么？" auto-height maxlength="140"/>
+      <textarea name="content" placeholder="想要说点什么？" auto-height maxlength="140" />
       <button bindtap="chooseImg">上传图片</button>
       <block wx:for="{{tempFilePaths}}">
         <view>
@@ -66,7 +70,7 @@
           <text>{{info}}</text>
         </view>
       </block>
-      
+
     </view>
     <view class="btn-area">
       <button formType="submit" class="primary">确定</button>

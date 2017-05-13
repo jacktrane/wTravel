@@ -8,7 +8,6 @@ Page({
     },
   },
   onLoad: function () {
-    console.log('onLoad');
     var that = this;
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
@@ -21,12 +20,12 @@ Page({
   },
   onReady: function () {
     // 页面渲染完成
-    var that = this;
-    wx.getLocation({
-      success: function (res) {
-        that.locateAnal(res.latitude, res.longitude);
-      },
-    })
+    // var that = this;
+    // wx.getLocation({
+    //   success: function (res) {
+    //     that.locateAnal(res.latitude, res.longitude);
+    //   },
+    // })
   },
   onShow: function () {
     // 页面显示
@@ -47,7 +46,7 @@ Page({
   travel: function(){
     var that = this;
     wx.navigateTo({
-      url: '../slid/strategy?city='+ that.data.city
+      url: '../slid/strategy?city=' + app.globalData.oriCity
     })
   },
   // 坐标逆地址解析

@@ -1,5 +1,6 @@
 // straContent.js
-var WxParse = require('../../wxParse/wxParse.js')
+var WxParse = require('../../wxParse/wxParse.js');
+var app = getApp();
 Page({
   data:{},
   onLoad:function(options){
@@ -7,7 +8,7 @@ Page({
     console.log(options.url);
     var that = this;
     wx.request({
-      url: 'https://jacktrane.cn/wx/travelApi.php?q=content&url=' + options.url,
+      url: app.globalData.servers + 'travelApi.php?q=content&url=' + options.url,
       method: 'GET',
       header: {
         "Content-Type": "application/json"

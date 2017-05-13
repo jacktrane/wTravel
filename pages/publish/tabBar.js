@@ -1,7 +1,8 @@
 // pages/publish/tabBar.js
-var util = require('../../utils/util.js')
-var playTimeInterval
-var recordTimeInterval
+var util = require('../../utils/util.js');
+var playTimeInterval;
+var recordTimeInterval;
+var app = getApp();
 Page({
   data:{
     recording: false,
@@ -14,7 +15,7 @@ Page({
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
-    console.log(options);
+    // console.log(options);
     var that = this;
     that.setData({
       name: options.name,
@@ -42,49 +43,120 @@ Page({
   // 表单提交的时候
   formSubmit: function(e) {
     var value =  e.detail.value;
-    wx.showModal({
-      title: '您填写的表单如下',
-      content: '姓名:'+value.name
-              +'性别：'+value.gender
-              +'年龄：'+value.age
-              +'擅长的开发语言：'+value.technology
-              +'是否公开信息：' + value.isPublic,
-      showCancel: false,
-      success: function(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
+    var that = this;
+    console.log(value.menu);
+    if (value.menu == 3){
+      wx.request({
+        url: app.globalData.servers + 'publishApi.php',
+        data: {
+          id: app.globalData.id,
+          content: value.content,
+          img_url: that.data.img_url,
+          longitude: that.data.longitude,
+          latitude: that.data.latitude,
+          city: app.globalData.oriCity
+        },
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success: function (res) {
+          console.log(res);
+        },
+        fail: function (res) {
+          console.log(res)
         }
-      }
-    });
+      })
+    }
+    // switch (value.menu) {
+    //   case 1: {
+    //     wx.request({
+    //       url: app.globalData.servers + 'publishApi.php',
+    //       data: {
+    //         nickName: that.data.nickName,
+    //         gender: that.data.gender,
+    //         avatarUrl: that.data.avatarUrl,
+    //         province: that.data.province,
+    //         city: that.data.city,
+    //         openid: that.data.openid
+    //       },
+    //       method: 'POST',
+    //       header: {
+    //         // 'Content-Type': 'application/json'
+    //         "Content-Type": "application/x-www-form-urlencoded"
+    //       },
+    //       success: function (res) {
+    //         app.globalData.id = res.data.user_id;
+    //         // if(res.data.id)
+    //         // 地图的marker在这边
+    //         that.setData({
+    //           markers: res.data.list
+    //         })
+    //       }
+    //     });
+    //   };
+    //   case 2: {
+    //   };
+    //   case 3: {
+    //     wx.request({
+    //       url: app.globalData.servers + 'publishApi.php',
+    //       data: {
+    //         id: app.globalData.id,
+    //         content: value.content,
+    //         img_url:that.data.img_url,
+    //         longitude: that.data.longitude,
+    //         latitude: that.data.latitude,
+    //         city: app.globalData.oriCity
+    //       },
+    //       method: 'POST',
+    //       header: {
+    //         "Content-Type": "application/x-www-form-urlencoded"
+    //       },
+    //       success: function (res) {
+    //         console.log(res);
+    //       },
+    //       fail: function(res){
+    //         console.log(res)
+    //       }
+    //     })
+    //   };
+    // }
+    
+    
   },
 
   // 选择图片
   chooseImg: function(){
     var that = this;
     wx.chooseImage({
-      count: 9, // 默认9
+      count: 1, // 默认9
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
+        var tempFilePaths = res.tempFilePaths;
+        console.log(tempFilePaths);
+        wx.uploadFile({
+          url: app.globalData.servers +'uploadApi.php',
+          filePath: tempFilePaths[0],
+          name: 'filePath',
+          header:{
+            "Content-Type": "multipart/form-data"
+          },
+          success: function(res){
+            that.setData({
+              img_url: res.data
+            });
+            console.log(res.data.file_path);
+            
+          }
+        })
         that.setData({
           tempFilePaths:res.tempFilePaths
         })
       }
     })
   },
-  // 获取图片
-  getImageInfo:function(e){
-    var imgUrl = e.currentTarget.id;
-    var that = this;
-    wx.getImageInfo({
-      src: imgUrl,
-      success: function (res) {
-        that.setData({
-          info:"图片长度:"+res.height+"图片宽度:"+res.width
-        })
-      }
-    })
-  },
+  
   
   // 开始录音
   startRecord: function () {

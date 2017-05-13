@@ -1,4 +1,5 @@
 // pages/index/trace.js
+var app = getApp();
 Page({
   data:{
     showModalStatus: false
