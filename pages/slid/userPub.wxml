@@ -2,13 +2,10 @@
 
 
   <view class="section" wx:for="{{items}}">
-    <view class="publish flex-wrp space-around" >
-      <view class="left-section flex-item">
-      <image src="{{item.user_img}}"></image>
-      </view>
-      <view class="right-section">
+    <view class="publish flex-wrp" style="flex-direction:row;">
+      <view class="right-section flex-item">
         <view class="clear">
-          <view class="nickname">{{item.user_name}}</view>
+          <!--<view class="nickname">yeyinghuan</view>-->
           <text wx:if="{{item.content !== null}}" class="content">{{item.content}}</text>
           <view wx:if="{{item.img_url !== null}}">
             <image src="{{server}}{{item.img_url}}"></image>

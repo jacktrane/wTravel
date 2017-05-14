@@ -19,8 +19,8 @@
               <view class="page-body-buttons">
                 <view class="page-body-button"></view>
                 <view class="page-body-button" bindtap="startRecord">
-                  <!--<image src="../../images/icon.png"></image>-->
-                  录音
+                  <image src="{{server}}images/play.png"></image>
+                  <!--录音-->
                 </view>
                 <view class="page-body-button"></view>
               </view>
@@ -44,12 +44,12 @@
               <view class="page-body-buttons">
                 <view class="page-body-button"></view>
                 <view class="page-body-button" bindtap="playVoice">
-                  <!--<image src="../../images/1186641.png"></image>-->
-                  播放
+                  <image src="{{server}}images/sound.png"></image>
+                  <!--播放-->
                 </view>
                 <view class="page-body-button" bindtap="clear">
-                  <!--<image src="../../images/14480.png"></image>-->
-                  取消
+                  <image src="{{server}}images/trash.png"></image>
+                  <!--取消-->
                 </view>
               </view>
             </block>

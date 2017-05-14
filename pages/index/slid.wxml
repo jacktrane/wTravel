@@ -5,7 +5,7 @@
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
   <view class="usermotto">
-    <view class="foot">相册</view>
+    <view class="foot" bindtap="userPub">相册</view>
     <view class="foot" bindtap="travel">周边攻略</view>
     <view class="foot" bindtap="nav">指南针</view>
     <!--<view class="foot"></view>-->

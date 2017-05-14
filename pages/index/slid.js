@@ -37,6 +37,11 @@ Page({
     // 页面关闭
   },
 
+  userPub: function () {
+    wx.navigateTo({
+      url: '../slid/userPub'
+    })
+  },
   // 指南针
   nav: function () {
     wx.navigateTo({

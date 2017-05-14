@@ -4,13 +4,11 @@
     "pages/index/trace",
     "pages/index/slid",
     "pages/publish/tabBar",
-    "pages/publish/voice",
-    "pages/publish/character",
-    "pages/publish/picture",
     "pages/compass/compass",
     "pages/slid/strategy",
     "pages/slid/straContent",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/slid/userPub"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,11 +24,11 @@
       },
       {
         "pagePath": "pages/index/trace",
-        "text": "痕迹"
+        "text": "定位"
       },
       {
         "pagePath": "pages/index/slid",
-        "text": "位置"
+        "text": "我的"
       }
     ]
   },

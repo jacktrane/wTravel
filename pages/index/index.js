@@ -81,20 +81,20 @@ Page({
           scale: 12,
           controls: [{
             id: 1,
-            iconPath: '../../images/icon.png',
+            iconPath: '../../images/add.png',
             position: {
-              left: info.windowWidth - 70,
+              left: info.windowWidth - 65,
               top: info.windowHeight - 70,
-              width: 50,
-              height: 50
+              width: 40,
+              height: 40
             },
             clickable: true
           }, {
             id: 2,
-            iconPath: '../../images/icon.png',
+            iconPath: '../../images/target.png',
             position: {
               left: info.windowWidth - 70,
-              top: info.windowHeight - 120,
+              top: info.windowHeight - 140,
               width: 50,
               height: 50
             },

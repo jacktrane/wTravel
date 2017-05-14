@@ -43,8 +43,8 @@
 }
 /*录音*/
 .voice image {
-  width: 150rpx;
-  height: 150rpx;
+  width: 120rpx;
+  height: 120rpx;
 }
 .page-body-wrapper {
   justify-content: space-between;

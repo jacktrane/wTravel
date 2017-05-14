@@ -7,7 +7,7 @@ Page({
     backgroundColor: '#fff',
     color: '#011b28',
     // bulb: '../../images/light.png',
-    compass: '../../images/compass.png'
+    compass: 'https://jacktrane.cn/wx/images/compass.png'
   },
   //事件处理函数
   onLoad: function () {
@@ -19,14 +19,14 @@ Page({
         backgroundColor: '#fff',
         color: '#011b28',
         // bulb: '../../images/tip.png',
-        compass: '../../images/compass.png'
+        compass: 'https://jacktrane.cn/wx/images/compass.png'
       })
     } else {
       this.setData({
         backgroundColor: '#fff',
         color: '#fff',
         // bulb: '../../images/light.png',
-        compass: '../../images/compass.png'
+        compass: 'https://jacktrane.cn/wx/images/compass.png'
       })
     }
     // 罗盘Api
@@ -87,14 +87,14 @@ Page({
             backgroundColor: '#fff',
             color: '#011b28',
             // bulb: '../../images/tip.png',
-            compass: '../../images/compass.png'
+            compass: 'https://jacktrane.cn/wx/images/compass.png'
           })
         } else {
           that.setData({
             backgroundColor: '#fff',
             color: '#fff',
             bulb: '../../images/light.png',
-            compass: '../../images/compass.png'
+            compass: 'https://jacktrane.cn/wx/images/compass.png'
           })
         }
       }

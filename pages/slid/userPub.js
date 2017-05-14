@@ -8,7 +8,7 @@ Page({
   data: {
     scrollTop: 0,
     server: app.globalData.servers,
-    playing: false
+    playing:false
   },
 
   /**
@@ -16,20 +16,18 @@ Page({
    */
   onLoad: function (options) {
     console.log(app.globalData);
-    wx.setNavigationBarTitle({ title: app.globalData.oriCity });
     var that = this;
     wx.request({
       url: app.globalData.servers + 'listApi.php',
       data: {
-        method: 'interation',
-        city: app.globalData.oriCity,
+        method: 'user',
+        id: app.globalData.id,
       },
       method: 'POST',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log(res.data);
         that.setData({
           items: res.data
         })
@@ -119,7 +117,43 @@ Page({
       scrollTop: 0
     })
   },
- 
+  good: function () {
+
+  },
+  comment: function () {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '这是一个设定过全部属性模态弹窗',
+      showCancel: true,
+      confirmText: '好的',
+      confirmColor: '#FF0000',
+      cancelText: '算了',
+      cancelColor: '#999999',
+      success: function (res) {
+        if (res.confirm) {
+          // that.showToast;
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 2000,
+            success: function (res) {
+              console.log("成功")
+            },
+
+          })
+        } else {
+          console.log('用户点击取消');
+        }
+      },
+      fail: function () {
+        console.log('接口调用失败');
+      },
+      complete: function () {
+        console.log('接口调用结束')
+      }
+    })
+  },
 
   openModal: function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
@@ -130,14 +164,20 @@ Page({
     })
     this.util(currentStatu)
   },
-  
+  // powerDrawer: function (e) {
+  //   var currentStatu = e.currentTarget.dataset.statu;
+  //   var user_id = app.globalData.id;
+  //   var pub_id = e.currentTarget.dataset.id;
+  //   this.setData({
+  //     pub_id: pub_id
+  //   })
+  //   this.util(currentStatu)
+  // },
 
   requestModal: function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
     var user_id = app.globalData.id;
-    var user_name = app.globalData.userInfo.nickName;
     var pub_id = this.data.pub_id;
-    var that = this;
     console.log(e.detail.value);
     console.log(pub_id);
     console.log(user_id);
@@ -237,7 +277,7 @@ Page({
           filePath: res.tempFilePath,
           success: function () {
             that.setData({
-              playing: true
+              playing:true
             })
           }
         })
